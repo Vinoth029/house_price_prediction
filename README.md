@@ -19,132 +19,74 @@ You are required to model the price of houses with the available independent var
 
 
 ## Basic Information
-- General information
-    - Dataset is very much clean and there is no missing values. 
-    - Dataset is having 15 columns and 730 rows.
-    - It has integer, float and object datatype.
+- Data Preprocessing
+    - Remove unwanted columns
+        -MSSubClass
+        -Street
+        -Utilities 
+        -Condition2 
+        -RoofMatl
+        -LowQualFinSF
+        -ScreenPorch
+        -EnclosedPorch
+        -3SsnPorch
+        -PoolArea
+        -MiscVal
 
-- Pre-processing
-    - Below columns are dropped
-        - 'instant'
-        - 'dteday'
-        - 'atemp'
-    - All the columns are renamed for better understanding.
+    - NA treatment
+        -Alley
+        -FireplaceQu
+        -PoolQC
+        -Fence
+        -MiscFeature
+        -LotFrontage
+        -Electrical
+        -GarageType
+        -GarageFinish
+        -GarageQual
+        -GarageCond
+        -GarageYrBlt
+        -BsmtQual
+        -BsmtCond
+        -BsmtExposure
+        -BsmtFinType1
+        -BsmtFinType2
+
+    - Outlier treatment
+
 
 ## Exploratory Data Analysis
-- Count vs Weekday
-    - On Weekends, the Non-Registered users are very high.
-    - On weekdays, the Registered users are high.
-
-    ![](Graphs/weekdays.png)
-
-- Count vs Month
-    - counts are higher in the middle of the months. Especially in case of Non-Registered users.
-
-    ![](Graphs/months.png)
-
-- Count vs Different Seasons
-    - Fall Season has the higher no of counts and spring season has the lower no of counts.
-    - Counts are very higher in 2019 then 2018.
-    - Approx 70% of the data are work days and 30% of the data are leave days(holiday and weekend) but still we can't see much difference. Hence we can say that in a year the proportion of total count for the bike rental is 50-50 for leave days and work days.
-    - Only 2.87% of data are represending the holidays. Even with that low number of days we could see that count is higher in fall season (Autumn - Pleasant Environment) compared with weekdays which is the remaining 97% of days in a year.
-
-    ![](Graphs/seasons1.png)
-
-- Count vs Weather
-    - Comparatively in 2019, count is higher. Under variour weather conditions Its obvious that in clear weather condition count is higher but still from the above graph and calculation its very clear that the data we hold for clear is higher in comparision with light rain.
-    - Once again its proving except in the case of light rain, though holiday is just about 30% and the remaining 70% are working day under Mist and Clear weather condition count is almost similar.
-    - Unlike Seasons, Across different weather conditions count is comparetively lower in the holidays but still holidays hold only around 3% of days in a year.
-
-    ![](Graphs/weather2.png)
-   
-
-- Count vs Temperature, Humidity and Windspeed
-    - From the below graphs we can understand that temperature is positively co-related with the count where as humidity is slightly negatively co-related and windspeed is negatively co-related.
-
-    ![](Graphs/temp_hum_temp.png)
+- In the first graph we can see that FV (Floating village residential) seems to be higher in price followed by RL(Low residential density)
+- Top right corner graph shows the shape of the property, IR1(Slightly irregular), IR2(Moderately irregular) and IR3(Irrugular) has higher price than the Regular shaped property.
+- LandContour (Property flatness) here too, HLS(significant slope) one seems to have higher price than others.
+- LotConfig doesn't affect the price in larger.
+- Some of the neighbourhood seems to be having very high price. Though the no of records are comparetively low its price is higher.
+    -NoRidge
+    -NridgHt
+    -Timber
+    -StoneBr
+- As overall quality of the house increases, Price is also increases. Except 5 and 2 rating the same goes to overall condition.
+- External quality and External condition with excellent rating seems to have high price as expected. In the External condition plot TA is higher because the no of records for TA is very high compared to Ex.
 
 
 ## Data Preparation
-- Dropping the below variables as they are not required for modeling.
-    - 'Casual'
-    - 'Registered'
-    - 'Count'
-
-- Creating dummy variables for the below columns
-    - 'Season'
-    - 'Month'
-    - 'Weekday'
-    - 'Weather'
-
-- Dropping the below variables as we don't need anymore.
-    - Friday is dropped
-    - Fall season is dropped
-    - Apr is dropped
-    - Clear is dropped
-
+- MinMax Scalling.
 - Train Test Split 
     - 70% as training data
     - 30% as test data
 
-- Data Analysis
-
-    ![](Graphs/analysis1.png)
-    ![](Graphs/analysis2.png)
-    ![](Graphs/analysis3.png)
-
-## Model Building 
-Several Model building attemps were made and finally came up with good model with all features having very low VIF (less than 5) and very low P-Value(less than 0.05)  
-
-    Count = 0.261(Const) + 0.238(Year) + 0.400(Temp) - 0.153(windspeed) - 0.082(Spring) + 0.037(Summer) + 0.104(Winter) - 0.057(Dec) - 0.050(Jan) + 0.034(Jun) - 0.069(Nov) + 0.059(Sep) - 0.029(Mon) - 0.041(Sun) - 0.272(Light Rain) - 0.078(Mist)
-
-## Residual Analysis
-- Verifying whether the error terms are normally distributed
-
-    ![](Graphs/ra1.png)
-
-Just like we expected the error terms (residuals) are normally distributed.
-
-- Verifying the error terms having constant variance accross different independent variables and they do not follow any pattern
-
-    ![](Graphs/ra2.png)
-    ![](Graphs/ra3.png)
-    ![](Graphs/ra4.png)
-    ![](Graphs/ra5.png)
-    ![](Graphs/ra6.png)
-
-Just like we expected error terms having constant variance and they do not follow any pattern. So lets predict and evalute the model.
 
 ## Prediction and Evaluation
-Model prediction on the test data set is quite good as that of train data set. Both having more that 80 % R2 Value.
 
-```python 
+- R2_Score on train set:  0.9034267539833389
+- R2_Score on test set:  0.8804515883386271
 
-r2_score(y_true=y_train, y_pred=y_train_pred)
-0.8456620899385177
-
-r2_score(y_true=y_test, y_pred=y_test_pred)
-0.8047821128977493
-
+Final Model :  -0.136 + 0.046*LotArea + 0.159*OverallQual + 0.026*OverallCond + 0.013*YearRemodAdd + 0.037*MasVnrArea + 0.054*ExterQual + 0.004*BsmtQual + 0.032*BsmtExposure + 0.088*BsmtFinSF1 + 0.004*TotalBsmtSF + 0.002*HeatingQC + 0.037*1stFlrSF + 0.266*GrLivArea + 0.013*HalfBath + 0.04*KitchenQual + 0.029*GarageCars + 0.028*GarageArea + 0.012*WoodDeckSF + 0.015*OpenPorchSF + 0.009*RL + 0.005*IR2 + 0.012*CulDSac + 0.002*Mod + 0.003*BrkSide + 0.016*Crawfor + 0.019*NoRidge + 0.034*NridgHt + 0.004*Somerst + 0.038*StoneBr + 0.012*Norm + 0.006*1Story + 0.01*Hip + 0.012*BrkFace + 0.006*CemntBd + 0.004*VinylSd + 0.011*Stone + 0.01*PConc + 0.014*Typ + 0.002*Gd + 0.009*BuiltIn + 0.004*Y + 0.05*New + 0.006*Normal
 ```
 
 ## Conclusions
-As the model prediction is quite higher and it performed well on the test data set. we can know conclude the significant variable.
 
-- Most Significant Variables are:
-    - Temperature 
-    - Year
-    - Clear Weather condition
-    - Fall Season
-- Some other Significant Variables are:
-    - Middle of the months
-    - Holidays
-    - Winter
-
-- The Variables that are affecting the demands are:
-    - Windspeed
-    - Start and End of the months
-    - Rain
+By Comparing both ridge and lasso regression. Though there is no large difference in prediction but still Ridge has r2_score slighly higher and lower RMSE in comparision with lasso. Despite having slightly higher R2_score and lower RMSE in Ridge its better to choose lasso as it is simple and robust.
 
 
 ## Contact
