@@ -81,7 +81,7 @@ You are required to model the price of houses with the available independent var
 - R2_Score on train set:  0.9034267539833389
 - R2_Score on test set:  0.8804515883386271
 
-Final Model :  -0.136 + 0.046*LotArea + 0.159*OverallQual + 0.026*OverallCond + 0.013*YearRemodAdd + 0.037*MasVnrArea + 0.054*ExterQual + 0.004*BsmtQual + 0.032*BsmtExposure + 0.088*BsmtFinSF1 + 0.004*TotalBsmtSF + 0.002*HeatingQC + 0.037*1stFlrSF + 0.266*GrLivArea + 0.013*HalfBath + 0.04*KitchenQual + 0.029*GarageCars + 0.028*GarageArea + 0.012*WoodDeckSF + 0.015*OpenPorchSF + 0.009*RL + 0.005*IR2 + 0.012*CulDSac + 0.002*Mod + 0.003*BrkSide + 0.016*Crawfor + 0.019*NoRidge + 0.034*NridgHt + 0.004*Somerst + 0.038*StoneBr + 0.012*Norm + 0.006*1Story + 0.01*Hip + 0.012*BrkFace + 0.006*CemntBd + 0.004*VinylSd + 0.011*Stone + 0.01*PConc + 0.014*Typ + 0.002*Gd + 0.009*BuiltIn + 0.004*Y + 0.05*New + 0.006*Normal
+Final Model :  -0.136 + 0.046*LotArea + 0.159*OverallQual + 0.026*OverallCond + 0.013*YearRemodAdd + 0.037*MasVnrArea + 0.054*ExterQual + 0.004*BsmtQual + 0.032*BsmtExposure + 0.088*BsmtFinSF1 + 0.004*TotalBsmtSF + 0.002*HeatingQC + 0.037*1stFlrSF + 0.266*GrLivArea + 0.013*HalfBath + 0.04*KitchenQual + 0.029*GarageCars + 0.028*GarageArea + 0.012*WoodDeckSF + 0.015*OpenPorchSF + 0.009*RL + 0.005*IR2 + 0.012*CulDSac + 0.002*Mod + 0.003*BrkSide + 0.016*Crawfor + 0.019*NoRidge + 0.034*NridgHt + 0.004*Somerst + 0.038*StoneBr + 0.012*Norm + 0.006*1Story + 0.01*Hip + 0.012*BrkFace + 0.006*CemntBd + 0.004*VinylSd + 0.011*Stone + 0.01*PConc + 0.014*Typ + 0.002*Gd + 0.009*BuiltIn + 0.004*Y + 0.05*New + 0.006*Normal.
 ```
 
 ## Conclusions
