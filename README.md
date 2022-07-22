@@ -90,4 +90,4 @@ By Comparing both ridge and lasso regression. Though there is no large differenc
 
 
 ## Contact
-Created by [Linked In](https://www.linkedin.com/in/vinoth-k-84080b156/)- feel free to contact me!
+Created by Vinoth K [Linked In](https://www.linkedin.com/in/vinoth-k-84080b156/)- feel free to contact me!
